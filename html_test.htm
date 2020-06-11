@@ -1,0 +1,411 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name=Generator content="FastReport 4.0 http://www.fast-report.com">
+
+<title>Personal Crew Schedule Report</title>
+<style type="text/css"><!-- 
+.page_break {page-break-before: always;}
+.s0 {
+ font-family: Tahoma;
+ font-size: 11px;
+ color: #FFFFFF; font-weight: bold; font-style: normal;
+ background-color: #808080;
+ text-align: Center; vertical-align: Middle;
+}
+.s1 {
+ font-family: Arial;
+ font-size: 9px;
+ color: #000000; font-style: normal;
+ background-color: #C0DCC0;
+ border-color:#000000; border-style: solid;
+ border-left-width: 1;
+ border-right-width: 1;
+ border-top-width: 1;
+ border-bottom-width: 1;
+ text-align: Center; vertical-align: Middle;
+}
+.s2 {
+ font-family: Courier New;
+ font-size: 12px;
+ color: #FFFF00; font-weight: bold; font-style: normal;
+ background-color: #000000;
+ border-color:#000000; border-style: solid;
+ border-left-width: 1;
+ border-right-width: 1;
+ border-top-width: 1;
+ border-bottom-width: 1;
+ text-align: Left; vertical-align: Top;
+}
+.s3 {
+ font-family: Arial;
+ font-size: 9px;
+ color: #000000; font-style: normal;
+ background-color: transparent;
+ border-color:#000000; border-style: solid;
+ border-left-width: 1;
+ border-right-width: 1;
+ border-top-width: 0px;
+ border-bottom-width: 0px;
+ text-align: Left; vertical-align: Top;
+}
+.s4 {
+ font-family: Arial;
+ font-size: 9px;
+ color: #000000; font-style: normal;
+ background-color: transparent;
+ border-color:#000000; border-style: solid;
+ border-left-width: 1;
+ border-right-width: 1;
+ border-top-width: 0px;
+ border-bottom-width: 0px;
+ text-align: Left; vertical-align: Top;
+}
+.s5 {
+ font-family: Arial;
+ font-size: 1px;
+ color: #000000; font-style: normal;
+ background-color: transparent;
+ border-color:#000000; border-style: solid;
+ border-left-width: 0px;
+ border-right-width: 0px;
+ border-top-width: 1;
+ border-bottom-width: 0px;
+ text-align: Left; vertical-align: Top;
+}
+.s6 {
+ font-family: Courier New;
+ font-size: 11px;
+ color: #000000; font-weight: bold; font-style: normal;
+ background-color: transparent;
+ border-color:#000000; border-style: solid;
+ border-left-width: 2;
+ border-right-width: 2;
+ border-top-width: 2;
+ border-bottom-width: 2;
+ text-align: Left; vertical-align: Top;
+}
+.s7 {
+ font-family: Courier New;
+ font-size: 11px;
+ color: #000000; font-weight: bold; font-style: normal;
+ background-color: transparent;
+ text-align: Left; vertical-align: Top;
+}
+.s8 {
+ font-family: Courier New;
+ font-size: 11px;
+ color: #000000; font-weight: bold; font-style: normal;
+ background-color: transparent;
+ border-color:#000000; border-style: solid;
+ border-left-width: 2;
+ border-right-width: 2;
+ border-top-width: 2;
+ border-bottom-width: 0px;
+ text-align: Left; vertical-align: Top;
+}
+.s9 {
+ font-family: Courier New;
+ font-size: 9px;
+ color: #000000; font-style: normal;
+ background-color: transparent;
+ border-color:#000000; border-style: solid;
+ border-left-width: 0px;
+ border-right-width: 0px;
+ border-top-width: 2;
+ border-bottom-width: 0px;
+ text-align: Left; vertical-align: Top;
+}
+.s10 {
+ font-family: Courier New;
+ font-size: 9px;
+ color: #000000; font-style: normal;
+ background-color: transparent;
+ text-align: Left; vertical-align: Top;
+}
+.s11 {
+ font-family: Courier New;
+ font-size: 9px;
+ color: #000000; font-style: normal;
+ background-color: transparent;
+ text-align: Right; vertical-align: Top;
+}
+.s12 {
+ font-family: Courier New;
+ font-size: 11px;
+ color: #000000; font-weight: bold; font-style: normal;
+ background-color: transparent;
+ border-color:#000000; border-style: solid;
+ border-left-width: 2;
+ border-right-width: 2;
+ border-top-width: 2;
+ border-bottom-width: 2;
+ text-align: Left; vertical-align: Top;
+}
+.s13 {
+ font-family: Arial;
+ font-size: 9px;
+ color: #000000; font-style: normal;
+ background-color: #C0DCC0;
+ border-color:#000000; border-style: solid;
+ border-left-width: 0px;
+ border-right-width: 1;
+ border-top-width: 1;
+ border-bottom-width: 1;
+ text-align: Center; vertical-align: Middle;
+}
+.s14 {
+ font-family: Arial;
+ font-size: 9px;
+ color: #000000; font-style: normal;
+ background-color: transparent;
+ border-color:#000000; border-style: solid;
+ border-left-width: 0px;
+ border-right-width: 1;
+ border-top-width: 0px;
+ border-bottom-width: 0px;
+ text-align: Left; vertical-align: Top;
+}
+.s15 {
+ font-family: Arial;
+ font-size: 9px;
+ color: #000000; font-style: normal;
+ background-color: transparent;
+ border-color:#000000; border-style: solid;
+ border-left-width: 0px;
+ border-right-width: 1;
+ border-top-width: 0px;
+ border-bottom-width: 0px;
+ text-align: Left; vertical-align: Top;
+}
+--></style>
+<script id='F5_helperDataStringsId' type='text/javascript'>
+if(typeof(F5_flush)!=='function'){
+var ur_firepass_host='https://connected.easyjet.com';
+var ur_baseurl='/f5-w-687474703a2f2f746f756368676f2e6575726f70652e656173796a65742e6c6f63616c$$/rep/';
+var ur_ACL_splitt="";
+var ur_ACL_minimal="";
+}
+</script>
+<script id='F5_helperFunctionsId' type='text/javascript' src='/private/fm/cache-fm.js'></script>
+<script id='F5_helperVersionCheck'> F5_Invoke_version(null,'4af7b2b39a2d9d3b64777f4513f8bea5920e12f2012c0e9c9fb6e3ffc10d3068');</script>
+<script id='F5_sesstimeout' type='text/javascript' src='/vdesk/sesstimeout.js'></script>
+<script id='F5_cookieInitId'>F5_removeLastScript(document,'F5_cookieInitId');F5_initializeCookiesFromMeta();</script>
+</head>
+<body
+ bgcolor="#FFFFFF" text="#000000">
+
+<a name="PageN1"></a>
+<table width="1085" border="0" cellspacing="0" cellpadding="0">
+<tr style="height: 1px"><td width="34"/><td width="34"/><td width="34"/><td width="19"/><td width="15"/><td width="34"/><td width="12"/><td width="5"/><td width="17"/><td width="34"/><td width="34"/><td width="34"/><td width="14"/><td width="5"/><td width="15"/><td width="2"/><td width="32"/><td width="11"/><td width="23"/><td width="34"/><td width="34"/><td width="26"/><td width="8"/><td width="34"/><td width="34"/><td width="10"/><td width="24"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="23"/><td width="11"/><td width="34"/><td width="30"/></tr>
+<tr style="height:26px">
+<td colspan="42" class="s0">Personal&nbsp;Crew&nbsp;Schedule&nbsp;Report.&nbsp;Period:&nbsp;18/05/2019&nbsp;to&nbsp;17/06/2019<br>All&nbsp;times&nbsp;in&nbsp;UTC,&nbsp;Actual,&nbsp;showing&nbsp;crew&nbsp;check-in/check-out&nbsp;times</td>
+</tr>
+<tr style="height:27px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:29px">
+<td colspan="42" class="s2">NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;DOUMA&nbsp;RINZE&nbsp;<br>ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;860087&nbsp;(TLS&nbsp;CP-319,320,320S,319S&nbsp;)&nbsp;</td>
+</tr>
+<tr style="height:2px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:26px">
+<td class="s1">May18<br>Sat</td><td class="s13">May19<br>Sun</td><td class="s13">May20<br>Mon</td><td colspan="2" class="s13">May21<br>Tue</td><td class="s13">May22<br>Wed</td><td colspan="3" class="s13">May23<br>Thu</td><td class="s13">May24<br>Fri</td><td class="s13">May25<br>Sat</td><td class="s13">May26<br>Sun</td><td colspan="3" class="s13">May27<br>Mon</td><td colspan="2" class="s13">May28<br>Tue</td><td colspan="2" class="s13">May29<br>Wed</td><td class="s13">May30<br>Thu</td><td class="s13">May31<br>Fri</td><td colspan="2" class="s13">Jun01<br>Sat</td><td class="s13">Jun02<br>Sun</td><td class="s13">Jun03<br>Mon</td><td colspan="2" class="s13">Jun04<br>Tue</td><td class="s13">Jun05<br>Wed</td><td class="s13">Jun06<br>Thu</td><td class="s13">Jun07<br>Fri</td><td class="s13">Jun08<br>Sat</td><td class="s13">Jun09<br>Sun</td><td class="s13">Jun10<br>Mon</td><td class="s13">Jun11<br>Tue</td><td class="s13">Jun12<br>Wed</td><td class="s13">Jun13<br>Thu</td><td class="s13">Jun14<br>Fri</td><td class="s13">Jun15<br>Sat</td><td colspan="2" class="s13">Jun16<br>Sun</td><td class="s13">Jun17<br>Mon</td><td class="s13" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3">D/O</td><td class="s14">D/O</td><td class="s14">LSBY</td><td colspan="2" class="s15">&nbsp;EJU</td><td class="s15">&nbsp;EJU</td><td colspan="3" class="s15">D/O</td><td class="s15">D/O</td><td class="s15">LSBY</td><td class="s15">&nbsp;EJU</td><td colspan="3" class="s15">LSBY</td><td colspan="2" class="s15">LSBY</td><td colspan="2" class="s15">&nbsp;EJU</td><td class="s15">D/O</td><td class="s15">D/O</td><td colspan="2" class="s15">D/O</td><td class="s15">&nbsp;EJU</td><td class="s15">&nbsp;EJU</td><td colspan="2" class="s15">&nbsp;EJU</td><td class="s14">&nbsp;EJU</td><td class="s15">&nbsp;EJU</td><td class="s15">D/O</td><td class="s15">D/O</td><td class="s15">D/O</td><td class="s15">&nbsp;EJU</td><td class="s15">CSBE</td><td class="s15">&nbsp;EJU</td><td class="s15">&nbsp;EJU</td><td class="s15">D/O</td><td class="s15">D/O</td><td colspan="2" class="s15">LSBY</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14">09:45</td><td colspan="2" class="s15">4340</td><td class="s15">1717</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">09:30</td><td class="s15">1737</td><td colspan="3" class="s15">11:15</td><td colspan="2" class="s15">09:30</td><td colspan="2" class="s15">1737</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">1709</td><td class="s15">7735</td><td colspan="2" class="s15">7721</td><td class="s14">1710</td><td class="s15">4340</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">8332</td><td class="s15">02:30</td><td class="s15">1711</td><td class="s15">4340</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">12:15</td><td class="s15">1474</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14">17:45</td><td colspan="2" class="s15">15:00</td><td class="s15">13:40</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">17:30</td><td class="s15">13:00</td><td colspan="3" class="s15">19:15</td><td colspan="2" class="s15">17:30</td><td colspan="2" class="s15">08:50</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">14:25</td><td class="s15">09:20</td><td colspan="2" class="s15">13:25</td><td class="s14">13:15</td><td class="s15">15:00</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">04:00</td><td class="s15">10:30</td><td class="s15">04:05</td><td class="s15">15:00</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">20:15</td><td class="s15">13:00</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">16:00</td><td class="s15">14:40</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">14:00</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">09:50</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">15:25</td><td class="s15">10:20</td><td colspan="2" class="s15">14:25</td><td class="s14">14:15</td><td class="s15">16:00</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">05:00</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">05:05</td><td class="s15">16:00</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">14:00</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">TLS</td><td class="s15">TLS</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">*TLS</td><td class="s15">NTE</td><td colspan="2" class="s15">NTE</td><td class="s14">*NTE</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">LYS</td><td class="s15">AGP</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">NCE</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">NCE</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">NTE</td><td class="s15">TLV</td><td colspan="2" class="s15">CTA</td><td class="s14">TLS</td><td class="s15">LYS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">LGW</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">FCO</td><td class="s15">LYS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">GVA</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">17:00</td><td class="s15">16:30</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">15:10</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">11:00</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">16:30</td><td class="s15">15:10</td><td colspan="2" class="s15">17:10</td><td class="s14">15:20</td><td class="s15">17:00</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">06:55</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">06:50</td><td class="s15">17:00</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">15:05</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">16:45</td><td class="s15">(320)</td><td colspan="2" class="s15">(320)</td><td class="s14">15:35</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">&nbsp;EJU</td><td class="s15">&nbsp;EJU</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">4355</td><td class="s15">1718</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">1738</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">1738</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td colspan="2" class="s15">&nbsp;EJU</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">4355</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">8333</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">1632</td><td class="s15">4355</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">1473</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">17:30</td><td class="s15">17:05</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">15:40</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">11:30</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">7736</td><td colspan="2" class="s15">7722</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">17:30</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">07:25</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">08:00</td><td class="s15">17:30</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">15:40</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">LYS</td><td class="s15">AGP</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">NCE</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">NCE</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">16:00</td><td colspan="2" class="s15">17:55</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">LYS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">LGW</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">FCO</td><td class="s15">LYS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">GVA</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">NTE</td><td class="s15">TLS</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLV</td><td colspan="2" class="s15">CTA</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">NTE</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">NCE</td><td class="s15">NTE</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">18:50</td><td class="s15">18:55</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">16:55</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">12:45</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">NTE</td><td colspan="2" class="s15">NTE</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">18:50</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">09:10</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">09:15</td><td class="s15">18:50</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">16:55</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">19:25</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">13:15</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">21:30</td><td colspan="2" class="s15">20:55</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">09:40</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">22:00</td><td colspan="2" class="s15">21:25</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">1708</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">3964</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">(320)</td><td colspan="2" class="s15">(320)</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">1708</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">1631</td><td class="s15">1708</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">3964</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">19:20</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">17:20</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">19:20</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">09:45</td><td class="s15">19:20</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">17:20</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">NTE</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">NTE</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">NCE</td><td class="s15">NTE</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">CDG</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">FCO</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">CDG</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">20:25</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">18:50</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">20:25</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">11:00</td><td class="s15">20:25</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">18:50</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">20:55</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">20:55</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">20:55</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;EJU</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">3965</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">1712</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">3965</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">19:20</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">11:35</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">19:20</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">CDG</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">FCO</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">CDG</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">TLS</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">20:45</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">13:25</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">20:45</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">21:15</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">13:55</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">21:15</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3">M</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">MR</td><td class="s15">R</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">R</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">R</td><td class="s15">R</td><td class="s15">R</td><td class="s15">R</td><td class="s15">R</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">R</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">&nbsp;3:25</td><td class="s15">&nbsp;3:40</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;5:20</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">&nbsp;2:25</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">10:20</td><td colspan="2" class="s15">&nbsp;5:45</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;3:25</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;3:40</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;6:05</td><td class="s15">&nbsp;3:25</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;5:15</td><td class="s15">Block</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14">&nbsp;8:00</td><td colspan="2" class="s15">&nbsp;5:55</td><td class="s15">&nbsp;5:45</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;8:00</td><td class="s15">&nbsp;8:15</td><td colspan="3" class="s15">&nbsp;8:00</td><td colspan="2" class="s15">&nbsp;8:00</td><td colspan="2" class="s15">&nbsp;4:25</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;2:20</td><td class="s15">12:40</td><td colspan="2" class="s15">&nbsp;8:00</td><td class="s14">&nbsp;2:20</td><td class="s15">&nbsp;5:55</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15">&nbsp;5:40</td><td class="s15">&nbsp;8:00</td><td class="s15">&nbsp;9:50</td><td class="s15">&nbsp;5:55</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15">&nbsp;8:00</td><td class="s15">&nbsp;8:15</td><td class="s15">Duty</td>
+</tr>
+<tr style="height:11px">
+<td class="s3" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="3" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s14" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td colspan="2" class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td><td class="s15" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:1px">
+<td colspan="42" class="s5" style="font-size:1px">&nbsp;</td>
+</tr>
+<tr style="height:24px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:15px">
+<td colspan="7" class="s7">CODE&nbsp;EXPLANATIONS</td><td/><td colspan="5" class="s7">TOTALS</td><td/><td colspan="8" class="s7">INDICATORS</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:15px">
+<td colspan="7" class="s8">CODE|DESCRIPTION</td><td/><td colspan="5" rowspan="3" class="s6">Block&nbsp;Hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;52:45<br>Duty&nbsp;Hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;133:15</td><td/><td colspan="8" rowspan="2" class="s6">M|MEMO<br>R|REQUESTED&nbsp;FLIGHT</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:16px">
+<td colspan="7" rowspan="3" class="s6">D/O&nbsp;|Day&nbsp;off<br>LSBY|Late&nbsp;Standby<br>CSBE|Crewing&nbsp;Standby&nbsp;Early</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:21px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:9px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:121px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:1px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:22px">
+<td colspan="4" class="s10">5/18/2019&nbsp;12:15:42&nbsp;PM</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td colspan="3" class="s11">Page&nbsp;1</td>
+</tr>
+</table>
+<a name="PageN2"></a>
+<table width="1085" border="0" cellspacing="0" cellpadding="0" class="page_break">
+<tr style="height: 1px"><td width="34"/><td width="34"/><td width="34"/><td width="19"/><td width="15"/><td width="34"/><td width="12"/><td width="5"/><td width="17"/><td width="34"/><td width="34"/><td width="34"/><td width="14"/><td width="5"/><td width="15"/><td width="2"/><td width="32"/><td width="11"/><td width="23"/><td width="34"/><td width="34"/><td width="26"/><td width="8"/><td width="34"/><td width="34"/><td width="10"/><td width="24"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="34"/><td width="23"/><td width="11"/><td width="34"/><td width="30"/></tr>
+<tr style="height:19px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:15px">
+<td colspan="26" class="s7">MEMOS</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:15px">
+<td colspan="26" class="s8">DATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEMO</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:109px">
+<td colspan="26" class="s12">18/05/2019&nbsp;Check&nbsp;20th&nbsp;Changes<br>21/05/2019&nbsp;added&nbsp;leg&nbsp;memo&nbsp;-&nbsp;Ref&nbsp;Nuria&nbsp;Jerez<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHARLES&nbsp;VIOT&nbsp;will&nbsp;be&nbsp;seated&nbsp;in&nbsp;the&nbsp;cabin&nbsp;observing&nbsp;the&nbsp;crew<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;May&nbsp;19&nbsp;ONLY&nbsp;4355<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Health&nbsp;and&nbsp;safety&nbsp;–&nbsp;GAIA&nbsp;Consulting&nbsp;-Reason&nbsp;form&nbsp;travel&nbsp;–&nbsp;Risk&nbsp;assessment<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;France&nbsp;-&nbsp;Ref&nbsp;Nuria&nbsp;Jerez</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:1px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:15px">
+<td colspan="18" class="s7">HOTEL&nbsp;INFORMATION&nbsp;IN&nbsp;LOCAL&nbsp;STATION</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:15px">
+<td colspan="18" class="s8">PORT&nbsp;&nbsp;NAME&nbsp;/&nbsp;ADDRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TELEPHONE</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:109px">
+<td colspan="18" class="s12">&nbsp;NTE&nbsp;&nbsp;OPERATIONAL&nbsp;HOTEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please&nbsp;view&nbsp;MyHATS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;hotel&nbsp;information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;DATE:Jun02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jun03&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jun04&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jun05&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:1px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:15px">
+<td colspan="16" class="s7">(*)&nbsp;DEAD&nbsp;-HEADING</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:15px">
+<td colspan="16" class="s8">CODE&nbsp;&nbsp;DESCRIPTION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATE&nbsp;&nbsp;DEP&nbsp;&nbsp;FLT&nbsp;&nbsp;LOCATOR</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:31px">
+<td colspan="16" class="s6">&nbsp;EJU&nbsp;&nbsp;easyJet&nbsp;Austria&nbsp;02Jun&nbsp;TLS&nbsp;&nbsp;1709&nbsp;<br>&nbsp;EJU&nbsp;&nbsp;easyJet&nbsp;Austria&nbsp;05Jun&nbsp;NTE&nbsp;&nbsp;1710&nbsp;</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:1px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:15px">
+<td colspan="42" class="s7">OTHER&nbsp;CREW&nbsp;MEMBERS</td>
+</tr>
+<tr style="height:15px">
+<td colspan="42" class="s8">DATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTESNAMES</td>
+</tr>
+<tr style="height:163px">
+<td colspan="42" class="s12">21/05/2019&nbsp;All&nbsp;FO&gt;&nbsp;ROCHEFORT&nbsp;ADRIEN&nbsp;&nbsp;&nbsp;&nbsp;PU&gt;&nbsp;PASAMONTES&nbsp;DE&nbsp;BARRI&nbsp;FA&gt;&nbsp;ENRIQUE&nbsp;FREDERIC&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;MORAL&nbsp;Ainhoa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;REBEIX&nbsp;AGATHE&nbsp;REBEI<br>22/05/2019&nbsp;All&nbsp;FO&gt;&nbsp;AVAKIAN&nbsp;STEPHAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;BOURLET&nbsp;CINDY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;MONGE&nbsp;LOU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;REBEIX&nbsp;AGATHE&nbsp;REBEI<br>26/05/2019&nbsp;All&nbsp;FO&gt;&nbsp;BAROUCH&nbsp;GUILLAUME&nbsp;&nbsp;&nbsp;PU&gt;&nbsp;GOMIS&nbsp;JEAN-LOUIS&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;ABEL&nbsp;RICHARD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;BOUTET&nbsp;LAURA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;MARRE&nbsp;OLIVIER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>29/05/2019&nbsp;All&nbsp;FO&gt;&nbsp;RUBIO&nbsp;PUEYO&nbsp;MANUEL&nbsp;&nbsp;PU&gt;&nbsp;LAFOND&nbsp;LAETITIA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;BACQUIE&nbsp;ELODIE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;GODOY&nbsp;&nbsp;GUADALUPE&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;QUANTIN&nbsp;VIOLAINE&nbsp;&nbsp;&nbsp;<br>02/06/2019&nbsp;All&nbsp;CP&gt;&nbsp;LORIDAN&nbsp;THOMAS***&nbsp;&nbsp;&nbsp;FO&gt;&nbsp;BESLOT&nbsp;ADRIEN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FO&gt;&nbsp;LEFEVRE&nbsp;JEAN-CHRIST&nbsp;PU&gt;&nbsp;BENELLI&nbsp;LUCA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;BLANCHARD&nbsp;CAMILLE&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;CIVALE&nbsp;MARINA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;PASTERNAK&nbsp;OPHELIE&nbsp;&nbsp;<br>03/06/2019&nbsp;All&nbsp;PU&gt;&nbsp;TRIPON&nbsp;SEBASTIEN&nbsp;&nbsp;L&nbsp;FA&gt;&nbsp;ALCANIZ&nbsp;ROMERO&nbsp;RAFA&nbsp;FA&gt;&nbsp;BONNET&nbsp;JANE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;COILIER&nbsp;LAURA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>04/06/2019&nbsp;All&nbsp;FO&gt;&nbsp;BALDE&nbsp;OURY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PU&gt;&nbsp;TRIPON&nbsp;SEBASTIEN&nbsp;&nbsp;L&nbsp;FA&gt;&nbsp;COILIER&nbsp;LAURA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;LEGAL&nbsp;LEANA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;PASTERNAK&nbsp;OPHELIE&nbsp;&nbsp;<br>05/06/2019&nbsp;All&nbsp;CP&gt;&nbsp;DUCAS&nbsp;GILLES***&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FO&gt;&nbsp;BALDE&nbsp;OURY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PU&gt;&nbsp;FRANCOIS&nbsp;OLIVIA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;CARANNANTE&nbsp;FENIKA&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;JAMES&nbsp;SIMONE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;MENARD&nbsp;CAMILLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>06/06/2019&nbsp;All&nbsp;FO&gt;&nbsp;BOUNAIX&nbsp;FRANCOIS&nbsp;&nbsp;&nbsp;&nbsp;PU&gt;&nbsp;DELORIERE&nbsp;&nbsp;PASCAL&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;HEYBERGER&nbsp;CHLOE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;RIGAL&nbsp;REIZ&nbsp;BENEDICT&nbsp;FA&gt;&nbsp;WENZINGER&nbsp;LOUISE&nbsp;&nbsp;&nbsp;<br>10/06/2019&nbsp;All&nbsp;PU&gt;&nbsp;PASAMONTES&nbsp;DE&nbsp;BARRI&nbsp;FA&gt;&nbsp;BACQUIE&nbsp;ELODIE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;SCHREUDER&nbsp;PETER&nbsp;KEL&nbsp;FA&gt;&nbsp;VALENZA&nbsp;NATHALIE&nbsp;&nbsp;&nbsp;<br>12/06/2019&nbsp;All&nbsp;PU&gt;&nbsp;SOUTO&nbsp;ALVAREZ&nbsp;ANA&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;DE&nbsp;PRADO&nbsp;&nbsp;MONICA&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;FONTALLIO&nbsp;BIANCA&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;LAMOUR&nbsp;MICHAEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>13/06/2019&nbsp;All&nbsp;FO&gt;&nbsp;AVAKIAN&nbsp;STEPHAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PU&gt;&nbsp;FULCRAN&nbsp;FREDERIC&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;GODOY&nbsp;&nbsp;GUADALUPE&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;NESTORET&nbsp;LOIC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;QUANTIN&nbsp;VIOLAINE&nbsp;&nbsp;&nbsp;<br>17/06/2019&nbsp;All&nbsp;FO&gt;&nbsp;WILLCOCKS&nbsp;SAMUEL&nbsp;&nbsp;&nbsp;&nbsp;PU&gt;&nbsp;RDAOUNI-COMBES&nbsp;LUDI&nbsp;FA&gt;&nbsp;BOUTET&nbsp;LAURA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;NAZZARO&nbsp;NICOLO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA&gt;&nbsp;NESTORET&nbsp;LOIC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr style="height:175px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:1px">
+<td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/>
+</tr>
+<tr style="height:22px">
+<td colspan="4" class="s10">5/18/2019&nbsp;12:15:42&nbsp;PM</td><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td/><td colspan="3" class="s11">Page&nbsp;2</td>
+</tr>
+</table>
+</body></html>
+
