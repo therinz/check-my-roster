@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error {{ errorcode }}
+{% endblock %}
+
+{% block main %}
+<!--    <img alt="{{ errorcode - message }}" class="border" src="https://giphy.com/gifs/xUPJPBo9z8zqquda6I/html5" title="{{ errorcode - message }}">-->
+<p>Code {{ errorcode }} - {{ message }}</p>
+{% endblock %}
