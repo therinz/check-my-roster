@@ -149,6 +149,14 @@ class OtherDuty:
         self.end_time = end_time
 
 
+def count_items():
+    # read html
+    # run html thru parser
+    # count items in duty days
+    # return count
+    pass
+
+
 class AirportNotKnown(Exception):
     """ Custom message if number of airports not known. """
 

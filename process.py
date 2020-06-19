@@ -227,6 +227,8 @@ class ReadRoster:
         return [[row[i] for row in rows] for i in range(32)]
 
     def night_stops(self):
+        """ Check box below roster days for any hotel information. """
+
         s = self.soup.find(string=re.compile(r"[A-Za-z]{6,12} HOTEL"))
         if s is not None:
             return re.findall(r"[A-Z][a-z]{2}[0-9]{2}", str(s.parent))
@@ -256,10 +258,10 @@ class ReadRoster:
                         days_flying += 1
                         at_work = True
                     if duty.position:
-                        if (not multi_pos and
-                                ((duty.dep not in Flight.simulators
-                                  and duty.arr not in Flight.simulators)
-                                 or distance > 15)):
+                        if (not multi_pos
+                                and ((duty.dep not in Flight.simulators
+                                      and duty.arr not in Flight.simulators)
+                                     or distance > 15)):
                             # TODO Length not taken into account, only 1 leg per day
                             # TODO Ground pos to LGW and MXP not properly calculated
                             positioning += 1
