@@ -37,21 +37,21 @@ def time_diff(a, b):
             - timedelta(days=0, hours=int(a[0]), minutes=int(a[1])))
 
 
-def import_airport_data(IATA, write=1):
+def import_airport_data(iata, write=1):
     """ Lookup airport data in big list and save in selected airport list. """
 
     with open("all_airports.csv", "r", newline="", encoding='utf-8') as file:
         contents = csv.DictReader(file)
 
         for row in contents:
-            if row["iata_code"] == IATA.upper():
+            if row["iata_code"] == iata.upper():
                 apd = Airport(row["iata_code"],
                               row["gps_code"],
                               row["municipality"],
                               (row["latitude_deg"], row["longitude_deg"]))
                 break
             else:
-                raise AirportNotKnown([IATA])
+                raise AirportNotKnown([iata])
 
         if write == 1:
             with open("airports.csv", "a", newline="") as file2:
@@ -60,7 +60,6 @@ def import_airport_data(IATA, write=1):
                                       apd.icao,
                                       apd.name,
                                       apd.coord[0], apd.coord[1]])
-
         return apd
 
 
@@ -74,11 +73,8 @@ class Airport:
         self.coord = coord
 
     def __str__(self):
-        return ("{} ({}) is located at {}."
-                .format(self.name, self.iata,
-                        (", ".join(map(str, self.coord)))
-                        )
-                )
+        return (f"{self.name} ({self.iata}) is located at "
+                f"{', '.join(map(str, self.coord))}.")
 
 
 class DutyDay:
@@ -92,31 +88,82 @@ class DutyDay:
         self.start_time = report_time
         self.end_time = off_duty  # might be after midnight, thus < std
         # TODO standby start will be before report time
+        self.count = self.count_items()
+
+    def count_items(self):
+        """ Count the different items of the duties on 1 day. """
+
+        on_asby = multi_ground = False
+        lv = dict.fromkeys(["total", "num_flights", "domestic", "asby"], 0)
+
+        for duty in self.duties:
+            if isinstance(duty, Flight):
+                lv["day_at_work"] = lv["flying"] = True
+                if duty.position and "positioning" not in lv:
+                    if ((duty.dep not in Flight.simulators
+                         and duty.arr not in Flight.simulators)
+                            or duty.length > 15):
+                        # Length of sector not taken into account,
+                        # only 1 leg per day. Not to sim if less than 15nm.
+                        # TODO Ground pos to LGW and MXP not properly calculated
+                        lv["positioning"] = True
+
+                # Normal flight
+                else:
+                    lv["total"] += duty.nominal
+                    lv["num_flights"] += 1
+                    lv["domestic"] += 1 if duty.domestic else 0
+
+                    # Call out from asby
+                    if on_asby:
+                        lv["asby"] -= 1
+                        on_asby = False
+            else:
+                # First check if day at home
+                if duty.rostercode in OtherDuty.off_codes:
+                    lv[duty.rostercode] = 1
+
+                # Only 1 ground duty per day paid
+                if duty.paid and not multi_ground:
+                    lv["ground_duties"] = 1
+                    lv["day_at_work"] = True
+                    multi_ground = True
+                if duty.rostercode == "ASBY" or duty.rostercode == "ADTY":
+                    lv["day_at_work"] = True
+                    on_asby = True
+                    short = (time_diff(duty.start_time, duty.end_time)
+                             < timedelta(hours=4))
+                    lv["asby"] += 1 if short else 2
+        return lv
 
 
 class Flight:
-    """ Flight used to distance between 2 airports. """
+    """ Contains information about flight between 2 airports. """
 
     # Populate list with frequent EZY airports
     airports_list = get_airports()
     simulators = ["XBH", "XCS", "XDH", "XWT", "XSW", "XOL"]
     # Factored length of duty, multiplied by 10
-    nominal = {"s": 8, "m": 12, "l": 15, "xl": 25}
+    conversion = {"s": 8, "m": 12, "l": 15, "xl": 25}
 
     def __init__(self, flight_no, dep, arr, std, sta,
                  position=False, comeback=False):
+
+        # First check if airport in small list, else import from big list
+        for iata in dep, arr:
+            if not Flight.airports_list.get(iata):
+                Flight.airports_list[iata] = import_airport_data(iata)
+
         self.comeback = comeback
         self.flight_no = flight_no
-        self.arr = arr
-        self.dep = dep
+        self.dep = Flight.airports_list[dep]
+        self.arr = Flight.airports_list[arr]
         self.position = position
         self.sta = sta  # might be after midnight, thus < std
         self.sta = std
-
-        # If airport data not known, import from big list
-        for IATA in self.dep, self.arr:
-            if not Flight.airports_list.get(IATA):
-                Flight.airports_list[IATA] = import_airport_data(IATA)
+        self.domestic = (self.dep.icao[:2] == self.arr.icao[:2])
+        self.length, self.sector = self.distance()
+        self.nominal = self.conversion[self.sector]
 
     def distance(self):
         # Skip the calculation if no take off
@@ -124,9 +171,7 @@ class Flight:
             sector = "Ground return"
             length = 0
         else:
-            length = int(great_circle(
-                Flight.airports_list[self.dep].coord,
-                Flight.airports_list[self.arr].coord).nautical)
+            length = int(great_circle(self.dep.coord, self.arr.coord).nautical)
             if length <= 400:
                 sector = "s"
             elif length <= 1000:
@@ -137,24 +182,41 @@ class Flight:
                 sector = "xl"
         return length, sector
 
+    def __str__(self):
+        if self.position:
+            print(f"{str(self.position).capitalize()} positioning duty from "
+                  f"{self.dep.iata} to {self.arr.iata}.")
+        elif self.comeback:
+            print(f"(A flight in {self.dep.iata} returned to stand "
+                  f"while still on ground.)")
+        else:
+            print(f"Flight from {self.dep.iata} to {self.arr.iata}, length of "
+                  f"{self.length}nm ({self.sector}).")
+
 
 class OtherDuty:
     """ Create a class of any duty other than a flight. """
 
     rostercodes = get_rostercodes()
+    paid_codes = [code
+                  for code, values in rostercodes.items()
+                  if values[2] == "True"]
+    off_codes = [code
+                 for code, values in rostercodes.items()
+                 if values[1] == "off"]
 
     def __init__(self, rostercode, start_time=None, end_time=None):
         self.rostercode = rostercode
         self.start_time = start_time
         self.end_time = end_time
+        self.paid = (rostercode in OtherDuty.paid_codes)
+        self.off = (rostercode in OtherDuty.off_codes)
 
-
-def count_items():
-    # read html
-    # run html thru parser
-    # count items in duty days
-    # return count
-    pass
+    def __str__(self):
+        if self.paid:
+            print(f"No duty: {self.rostercode}.")
+        else:
+            print(f"Ground duty with code {self.rostercode}")
 
 
 class AirportNotKnown(Exception):

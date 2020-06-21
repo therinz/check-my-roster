@@ -122,7 +122,7 @@ class ParseRoster:
 
     def day(self, day):
         """ For one day, loop through all rows and extract duties and times. """
-
+        # TODO change get into "key in dict"
         i = 0
         for j, row in enumerate(day):
             skip_vals = ["None", " EJU", " ", "Block",
@@ -211,7 +211,7 @@ class ReadRoster:
         except FileNotFoundError as file_error:
             print(file_error)
         else:
-            self.print_roster()
+            self.run_file()
 
     def parse_html(self):
         """ Find every line in html roster with duty element.
@@ -224,7 +224,7 @@ class ReadRoster:
             cells = [str(cell.string) for cell in row.find_all("td")]
             if len(cells) == 32:
                 rows.append(cells)
-        return [[row[i] for row in rows] for i in range(32)]
+        return [[row[column] for row in rows] for column in range(32)]
 
     def night_stops(self):
         """ Check box below roster days for any hotel information. """
@@ -252,7 +252,6 @@ class ReadRoster:
             print(f"Day {i}")
             for duty in duty_day.duties:
                 if isinstance(duty, Flight):
-                    distance, sector = duty.distance()
                     if not at_work:
                         days_at_work += 1
                         days_flying += 1
@@ -261,7 +260,7 @@ class ReadRoster:
                         if (not multi_pos
                                 and ((duty.dep not in Flight.simulators
                                       and duty.arr not in Flight.simulators)
-                                     or distance > 15)):
+                                     or duty.distance > 15)):
                             # TODO Length not taken into account, only 1 leg per day
                             # TODO Ground pos to LGW and MXP not properly calculated
                             positioning += 1
@@ -273,14 +272,14 @@ class ReadRoster:
                         print(f"    (This flight in {duty.dep} returned "
                               f"to stand while still on ground.)")
                     else:
-                        total += Flight.nominal[sector]
+                        total += duty.nominal
                         num_flights += 1
                         icao_d = duty.airports_list[duty.dep].icao
                         icao_a = duty.airports_list[duty.arr].icao
                         if icao_d.startswith("LF") and icao_a.startswith("LF"):
                             domestic += 1
                         print(f"    Flight from {duty.dep} to {duty.arr}, "
-                              f"length {distance} ({sector}).")
+                              f"length {duty.length} nm ({duty.sector}).")
                         if on_asby:
                             asby -= 1
                             on_asby = False
@@ -325,6 +324,33 @@ class ReadRoster:
         if night_stops is not None:
             nights = ", ".join(night_stops)
             print(f"\nNightstopping {len(night_stops)} times: {nights}")
+
+    def run_file(self):
+        roster = ParseRoster()
+        month = self.parse_html()
+        master_count = {}
+
+        # Convert raw roster into duties
+        for day in month:
+            roster.day(day)
+        # Sum up duties of full period
+        for day in roster.days:
+            item_dict = day.count_items()
+            for key, value in item_dict.items():
+                try:
+                    if key not in master_count:
+                        master_count[key] = value
+                    else:
+                        master_count[key] = master_count[key] + value
+                except TypeError:
+                    # Key/value is bool
+                    if key not in master_count:
+                        master_count[key] = 1
+                    else:
+                        master_count[key] = master_count[key] + 1
+        master_count["total"] = master_count["total"] / 10
+        for key, value in master_count.items():
+            print(f"Item {key} count {value}.")
 
 
 if __name__ == '__main__':
