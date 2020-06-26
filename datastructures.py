@@ -5,7 +5,7 @@ from geopy.distance import great_circle
 
 
 def get_rostercodes():
-    """ Load roster codes from csv. """
+    """Load roster codes from small csv."""
 
     with open("other_duties.csv", "r", newline="") as f:
         contents = csv.reader(f, delimiter="|")
@@ -14,7 +14,7 @@ def get_rostercodes():
 
 
 def get_airports():
-    """ Load airports from frequent airports csv. """
+    """Load airports from frequent airports csv."""
 
     with open("airports.csv", "r", newline="") as file:
         contents = csv.DictReader(file, delimiter="|")
@@ -28,20 +28,28 @@ def get_airports():
 
 
 def time_diff(a, b):
-    # TODO Does not take into account if same time different day
+    """Calculate time difference between two times.
+
+    :returns: timedelta object time in hh:mm
+    """
+
     def transpose(x): return int("".join([x[0:2], x[3:5]]))
-    day = 0 if transpose(a) <= transpose(b) else 1
+
+    # If b is smaller it means a was previous day
+    day = 0 if transpose(a) < transpose(b) else 1
     a = a.split(":")
     b = b.split(":")
+
     return (timedelta(days=day, hours=int(b[0]), minutes=int(b[1]))
             - timedelta(days=0, hours=int(a[0]), minutes=int(a[1])))
 
 
 def import_airport_data(iata, write=1):
-    """ Lookup airport data in big list and save in selected airport list. """
+    """Lookup airport data in big list and save in selected airport list."""
 
     with open("all_airports.csv", "r", newline="", encoding='utf-8') as file:
         contents = csv.DictReader(file)
+        apd = None
 
         for row in contents:
             if row["iata_code"] == iata.upper():
@@ -50,21 +58,21 @@ def import_airport_data(iata, write=1):
                               row["municipality"],
                               (row["latitude_deg"], row["longitude_deg"]))
                 break
-            else:
-                raise AirportNotKnown([iata])
+        if not apd:
+            raise AirportNotKnown([iata])
 
         if write == 1:
             with open("airports.csv", "a", newline="") as file2:
                 file_writer = csv.writer(file2, delimiter="|")
                 file_writer.writerow([apd.iata,
                                       apd.icao,
-                                      apd.name,
+                                      ascii(apd.name).replace("'", ""),
                                       apd.coord[0], apd.coord[1]])
         return apd
 
 
 class Airport:
-    """ Class to store data relating to an airport. """
+    """Class to store data relating to an airport."""
 
     def __init__(self, iata, icao, name, coord):
         self.iata = iata
@@ -91,14 +99,16 @@ class DutyDay:
         self.count = self.count_items()
 
     def count_items(self):
-        """ Count the different items of the duties on 1 day. """
+        """Count the different items of the duties on 1 day."""
 
         on_asby = multi_ground = False
-        lv = dict.fromkeys(["total", "num_flights", "domestic", "asby"], 0)
+        lv = dict.fromkeys(["num_sectors", "num_flights", "domestic", "asby"], 0)
 
         for duty in self.duties:
             if isinstance(duty, Flight):
                 lv["day_at_work"] = lv["flying"] = True
+
+                # First check if positioning
                 if duty.position and "positioning" not in lv:
                     if ((duty.dep not in Flight.simulators
                          and duty.arr not in Flight.simulators)
@@ -110,7 +120,7 @@ class DutyDay:
 
                 # Normal flight
                 else:
-                    lv["total"] += duty.nominal
+                    lv["num_sectors"] += duty.nominal
                     lv["num_flights"] += 1
                     lv["domestic"] += 1 if duty.domestic else 0
 
@@ -136,9 +146,12 @@ class DutyDay:
                     lv["asby"] += 1 if short else 2
         return lv
 
+    def __str__(self):
+        return f"Duty day consisting of {len(self.duties)} duties."
+
 
 class Flight:
-    """ Contains information about flight between 2 airports. """
+    """Contains information about flight between 2 airports."""
 
     # Populate list with frequent EZY airports
     airports_list = get_airports()
@@ -151,7 +164,7 @@ class Flight:
 
         # First check if airport in small list, else import from big list
         for iata in dep, arr:
-            if not Flight.airports_list.get(iata):
+            if iata not in Flight.airports_list:
                 Flight.airports_list[iata] = import_airport_data(iata)
 
         self.comeback = comeback
@@ -162,14 +175,18 @@ class Flight:
         self.sta = sta  # might be after midnight, thus < std
         self.sta = std
         self.domestic = (self.dep.icao[:2] == self.arr.icao[:2])
-        self.length, self.sector = self.distance()
-        self.nominal = self.conversion[self.sector]
+        self.length, self.sector, self.nominal = self.distance()
 
     def distance(self):
+        """
+        Calculate distance between 2 airports and return this value as
+        length, sector length category and nominal length.
+        """
+
         # Skip the calculation if no take off
         if self.comeback == "R":
             sector = "Ground return"
-            length = 0
+            length = nominal = 0
         else:
             length = int(great_circle(self.dep.coord, self.arr.coord).nautical)
             if length <= 400:
@@ -180,22 +197,23 @@ class Flight:
                 sector = "l"
             else:
                 sector = "xl"
-        return length, sector
+            nominal = self.conversion[sector]
+        return length, sector, nominal
 
     def __str__(self):
         if self.position:
-            print(f"{str(self.position).capitalize()} positioning duty from "
-                  f"{self.dep.iata} to {self.arr.iata}.")
+            return (f"{str(self.position).capitalize()} positioning "
+             f"duty from {self.dep.iata} to {self.arr.iata}.")
         elif self.comeback:
-            print(f"(A flight in {self.dep.iata} returned to stand "
-                  f"while still on ground.)")
+            return (f"(A flight in {self.dep.iata} returned to stand "
+             f"while still on ground.)")
         else:
-            print(f"Flight from {self.dep.iata} to {self.arr.iata}, length of "
-                  f"{self.length}nm ({self.sector}).")
+            return (f"Flight from {self.dep.iata} to {self.arr.iata}, length "
+                    f"of {self.length}nm ({self.sector}).")
 
 
 class OtherDuty:
-    """ Create a class of any duty other than a flight. """
+    """Class of any duty other than a flight."""
 
     rostercodes = get_rostercodes()
     paid_codes = [code
@@ -214,13 +232,13 @@ class OtherDuty:
 
     def __str__(self):
         if self.paid:
-            print(f"No duty: {self.rostercode}.")
+            return f"No duty: {self.rostercode}."
         else:
-            print(f"Ground duty with code {self.rostercode}")
+            return f"Ground duty with code {self.rostercode}"
 
 
 class AirportNotKnown(Exception):
-    """ Custom message if number of airports not known. """
+    """Custom message if number of airports not known."""
 
     def __init__(self, airport_list):
         self.airport_list = airport_list
@@ -232,7 +250,7 @@ class AirportNotKnown(Exception):
 # FUNCTIONS BELOW NOT USED
 
 def create_new_airport():
-    """ Ask user for airport data and export it to airports.csv. """
+    """Ask user for airport data and export it to airports.csv."""
 
     print("Create a new airport with the next 5 questions")
     iata = validate_input("Type 3 letter IATA code", str.upper, 3, 3)
