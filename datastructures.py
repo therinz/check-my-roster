@@ -36,7 +36,7 @@ def time_diff(a, b):
     def transpose(x): return int("".join([x[0:2], x[3:5]]))
 
     # If b is smaller it means a was previous day
-    day = 0 if transpose(a) < transpose(b) else 1
+    day = 0 if transpose(a) <= transpose(b) else 1
     a = a.split(":")
     b = b.split(":")
 
@@ -102,7 +102,8 @@ class DutyDay:
         """Count the different items of the duties on 1 day."""
 
         on_asby = multi_ground = False
-        lv = dict.fromkeys(["num_sectors", "num_flights", "domestic", "asby"], 0)
+        lv = dict.fromkeys(["num_sectors", "num_flights", "domestic", "asby"],
+                           0)
 
         for duty in self.duties:
             if isinstance(duty, Flight):
@@ -130,20 +131,17 @@ class DutyDay:
                         on_asby = False
             else:
                 # First check if day at home
-                if duty.rostercode in OtherDuty.off_codes:
-                    lv[duty.rostercode] = 1
+                if duty.duty_code in OtherDuty.off_codes:
+                    lv[duty.duty_code] = 1
 
                 # Only 1 ground duty per day paid
                 if duty.paid and not multi_ground:
                     lv["ground_duties"] = 1
                     lv["day_at_work"] = True
                     multi_ground = True
-                if duty.rostercode == "ASBY" or duty.rostercode == "ADTY":
-                    lv["day_at_work"] = True
-                    on_asby = True
-                    short = (time_diff(duty.start_time, duty.end_time)
-                             < timedelta(hours=4))
-                    lv["asby"] += 1 if short else 2
+                if duty.duty_code in ["ASBY", "ADTY"]:
+                    lv["day_at_work"] = on_asby = True
+                    lv["asby"] += duty.paid
         return lv
 
     def __str__(self):
@@ -203,10 +201,14 @@ class Flight:
     def __str__(self):
         if self.position:
             return (f"{str(self.position).capitalize()} positioning "
-             f"duty from {self.dep.iata} to {self.arr.iata}.")
-        elif self.comeback:
+                    f"duty from {self.dep.iata} to {self.arr.iata}.")
+        elif self.comeback == "R":
             return (f"(A flight in {self.dep.iata} returned to stand "
-             f"while still on ground.)")
+                    f"while still on ground.)")
+        elif self.comeback == "A":
+            return (f"Flight from {self.dep.iata} to {self.arr.iata} which "
+                    f"returned or diverted. Length of {self.length}nm "
+                    f"({self.sector}).")
         else:
             return (f"Flight from {self.dep.iata} to {self.arr.iata}, length "
                     f"of {self.length}nm ({self.sector}).")
@@ -216,25 +218,36 @@ class OtherDuty:
     """Class of any duty other than a flight."""
 
     rostercodes = get_rostercodes()
-    paid_codes = [code
-                  for code, values in rostercodes.items()
+    paid_codes = [code for code, values in rostercodes.items()
                   if values[2] == "True"]
-    off_codes = [code
-                 for code, values in rostercodes.items()
+    off_codes = [code for code, values in rostercodes.items()
                  if values[1] == "off"]
+    gnd_training = [code for code, values in rostercodes.items()
+                    if (values[1] in ["training", "recurrent"]
+                        and values[2] == "True")]
 
-    def __init__(self, rostercode, start_time=None, end_time=None):
-        self.rostercode = rostercode
+    def __init__(self, duty_code, start_time=None, end_time=None):
+        self.duty_code = duty_code
         self.start_time = start_time
         self.end_time = end_time
-        self.paid = (rostercode in OtherDuty.paid_codes)
-        self.off = (rostercode in OtherDuty.off_codes)
+        self.paid = (duty_code in OtherDuty.paid_codes)
+        self.off = (duty_code in OtherDuty.off_codes)
+
+        # Check how much sectors paid out
+        if self.paid:
+            if self.duty_code in ["ADTY", "ASBY", "OFC4", "OFC8"]:
+                short = (time_diff(self.start_time, self.end_time)
+                         < timedelta(hours=4))
+                self.paid = 1 if short else 2
+            elif self.duty_code in OtherDuty.gnd_training:
+                self.paid = 1
 
     def __str__(self):
-        if self.paid:
-            return f"No duty: {self.rostercode}."
+        if not self.paid:
+            return f"No paid duty: {self.duty_code}."
         else:
-            return f"Ground duty with code {self.rostercode}"
+            return (f"Ground duty with code {self.duty_code} "
+                    f"({self.paid} sector(s) paid).")
 
 
 class AirportNotKnown(Exception):

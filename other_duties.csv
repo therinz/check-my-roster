@@ -4,7 +4,7 @@ LSBY|True|standby|False
 CSBY|True|standby|False
 CSBE|True|standby|False
 CSBL|True|standby|False
-ADTY|True|standby|False
+ADTY|True|standby|True
 ASBY|True|standby|False
 HSBY|True|standby|False
 HCTB|True|standby|False
@@ -29,6 +29,7 @@ UNFT|False|off|False
 SICK|False|off|False
 NFLY|False|off|False
 NFYT|False|off|False
+KUG|True|off|False
 FIRE|True|recurrent|True
 DOOR|True|recurrent|True
 G/S|True|recurrent|True
@@ -36,7 +37,7 @@ ASEC|True|recurrent|True
 CRM|True|recurrent|True
 SEP|True|recurrent|True
 WET|True|recurrent|True
-CLD|True|ground|True
+CLD|True|training|True
 OPCV|True|training|True
 LIPC|True|training|True
 LOEV|True|training|True
@@ -48,7 +49,8 @@ OLAD|True|training|False
 EMED|True|ground|True
 MEET|True|ground|False
 OFC4|True|admin|True
-TFER|False|admin|False
-BFER|True|admin|False
-AMA|False|admin|False
+OFC8|True|admin|True
+TFER|False|off|False
+BFER|True|off|False
+AMA|False|off|False
 SNCR|False|admin|False
