@@ -7,21 +7,14 @@ from datetime import timedelta
 from bs4 import BeautifulSoup
 
 from datastructures import DutyDay, Flight, OtherDuty, get_rostercodes
-from datastructures import time_diff
+from datastructures import time_diff, summary_description
 
 GND_POS = ["OWN", "TAXI", "TRN", "NSO"]
 DAYS = []
 
 
 class ParseRoster:
-    """Read list of items on day of roster and make list of DutyDay's with
-    each Duty item.
-
-    :param self.lv: Store local values for working on roster decryption.
-    :param self.duties: Store each duty as a Flight or OtherDuty class.
-    :return: DutyDay class containing list of Flight
-            and/or OtherDuty and optional report & end times
-    """
+    """Class to convert items on roster to countable values."""
 
     roster_codes = get_rostercodes()
     timed_roster_codes = [code
@@ -29,22 +22,34 @@ class ParseRoster:
                           if values[0] == "True"]
     skip_vals = ["None", " EJU", " ", "Block", "Duty", " OWNA",
                  "(320)", "(321)", "EZS", " EZS", "SNCR"]
+    cont_times = ["report_time", "start_time", "STD", "STA"]
 
-    def __init__(self, period):
+    def __init__(self):
+        """
+        :param self.lv: Store local values for working on roster decryption.
+        :param self.duties: Store each duty as a Flight or OtherDuty class."""
         self.continued_duty = False
         self.lv = {}
         self.duties = []
-        self.unfinished_times = ["report_time", "start_time", "STD", "STA"]
+        self.days = []
+
+    def results(self, period):
+        """Take list of roster days and return list of DutyDay objects.
+
+        :param period: List of list containing rows with duty elements.
+        :return: List of DutyDay objects."""
 
         # Convert raw roster into days-list
-        for day in period:
-            self.parse_day(day)
+        for d in period:
+            self.parse_day(d)
         # It might be that last duty was unfinished
-        if self.lv.get("previous_item") in self.unfinished_times:
+        if self.lv.get("previous_item") in ParseRoster.cont_times:
             self.continued_duty = True
         # No activity in progress, but still duties in cache
         elif len(self.duties) > 0:
             self.clean_up(end_of_duty=True)
+
+        return self.days
 
     def search_duty_type(self, row):
         """Interpret what item in current row is."""
@@ -54,9 +59,9 @@ class ParseRoster:
 
         # Ground positioning
         if row in GND_POS:
-            # Takes into account taxi between bases.
+            # Takes into account taxi between bases. Flt no used for switching
             self.lv["position"] = "ground"
-            self.lv["flight_number"] = True
+            self.lv["flight_number"] = row
 
         # Flight
         elif search_flight_number:
@@ -128,9 +133,9 @@ class ParseRoster:
 
         # Duty has ended but isn't saved yet
         if end_of_duty:
-            DAYS.append(DutyDay(self.duties,
-                                report_time=self.lv.get("report_time"),
-                                off_duty=self.lv.get("off_time")))
+            self.days.append(DutyDay(self.duties,
+                                     report_time=self.lv.get("report_time"),
+                                     off_duty=self.lv.get("off_time")))
             self.duties = []
 
             # Keep_duty_type signals new duty has already begun,
@@ -178,13 +183,11 @@ class ParseRoster:
                 if skip_row > 3:
                     # There may still be an unfinished duty in cache
                     if (len(self.duties) > 0
-                            and previous_item not in self.unfinished_times):
+                            and previous_item not in ParseRoster.cont_times):
                         self.clean_up(end_of_duty=True)
                     break
                 continue
             skip_row = end_of_duty = 0
-            if len(DAYS) > 17:
-                k = 20
 
             # Check what's happening on row
             self.search_duty_type(row)
@@ -267,14 +270,17 @@ def night_stops(soup):
         return re.findall(r"[A-Z][a-z]{2}[0-9]{2}", str(s.parent))
 
 
-def only_count():
-    """Take list of days and return count of roster items."""
+def only_count(days):
+    """Take list of days and return count of roster items.
+
+    :param days: List of DutyDay objects.
+    :return: Dictionary of roster items with their count."""
 
     master_count = {}
 
     # Sum up duties of full period
-    for day in DAYS:
-        activities = day.count_items()
+    for d in days:
+        activities = d.count_items()
         for key, value in activities.items():
             try:
                 if key not in master_count:
@@ -289,7 +295,7 @@ def only_count():
                     master_count[key] = master_count[key] + 1
     master_count["num_sectors"] = master_count["num_sectors"] / 10
 
-    return master_count
+    return summary_description(master_count)
 
 
 if __name__ == '__main__':
@@ -303,8 +309,9 @@ if __name__ == '__main__':
         file = rf"20{year}\{year}-{i:02d}.htm"
         months.extend(read_html(r"\\".join([path, file])))
 
-    ParseRoster(months)
-    for i, day in enumerate(DAYS):
+    pr = ParseRoster()
+    days = pr.results(months)
+    for i, day in enumerate(days):
         print(f"Day {i+1}")
         for duty in day.duties:
             print(duty)

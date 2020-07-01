@@ -102,22 +102,19 @@ class DutyDay:
         """Count the different items of the duties on 1 day."""
 
         on_asby = multi_ground = False
-        lv = dict.fromkeys(["num_sectors", "num_flights", "domestic", "asby"],
+        lv = dict.fromkeys(["num_sectors", "num_flights",
+                            "domestic", "asby", "positioning"],
                            0)
 
         for duty in self.duties:
             if isinstance(duty, Flight):
                 lv["day_at_work"] = lv["flying"] = True
 
-                # First check if positioning
-                if duty.position and "positioning" not in lv:
-                    if ((duty.dep not in Flight.simulators
-                         and duty.arr not in Flight.simulators)
-                            or duty.length > 15):
-                        # Length of sector not taken into account,
-                        # only 1 leg per day. Not to sim if less than 15nm.
-                        # TODO Ground pos to LGW and MXP not properly calculated
-                        lv["positioning"] = True
+                # First check if positioning (only 1 leg per day)
+                if (duty.position
+                        and "positioning" not in lv
+                        and duty.nominal != 0):
+                    lv["positioning"] += duty.nominal
 
                 # Normal flight
                 else:
@@ -131,15 +128,14 @@ class DutyDay:
                         on_asby = False
             else:
                 # First check if day at home
-                if duty.duty_code in OtherDuty.off_codes:
+                if duty.off:
                     lv[duty.duty_code] = 1
-
                 # Only 1 ground duty per day paid
-                if duty.paid and not multi_ground:
+                elif duty.paid and not multi_ground:
                     lv["ground_duties"] = 1
                     lv["day_at_work"] = True
                     multi_ground = True
-                if duty.duty_code in ["ASBY", "ADTY"]:
+                elif duty.duty_code in ["ASBY", "ADTY"]:
                     lv["day_at_work"] = on_asby = True
                     lv["asby"] += duty.paid
         return lv
@@ -156,6 +152,8 @@ class Flight:
     simulators = ["XBH", "XCS", "XDH", "XWT", "XSW", "XOL"]
     # Factored length of duty, multiplied by 10
     conversion = {"s": 8, "m": 12, "l": 15, "xl": 25}
+    # For switching in jinja template
+    duty_type = 1
 
     def __init__(self, flight_no, dep, arr, std, sta,
                  position=False, comeback=False):
@@ -174,6 +172,11 @@ class Flight:
         self.sta = std
         self.domestic = (self.dep.icao[:2] == self.arr.icao[:2])
         self.length, self.sector, self.nominal = self.distance()
+
+        sim = (dep in Flight.simulators or arr in Flight.simulators)
+        if position and (sim and self.length < 15):
+            # TODO Ground pos to LGW and MXP not properly calculated
+            self.nominal = 0
 
     def distance(self):
         """
@@ -225,6 +228,7 @@ class OtherDuty:
     gnd_training = [code for code, values in rostercodes.items()
                     if (values[1] in ["training", "recurrent"]
                         and values[2] == "True")]
+    duty_type = 0
 
     def __init__(self, duty_code, start_time=None, end_time=None):
         self.duty_code = duty_code
@@ -258,6 +262,24 @@ class AirportNotKnown(Exception):
 
     def __str__(self):
         return "Some airports are not defined: " + " ".join(self.airport_list)
+
+
+def summary_description(count):
+    """Take dict of item count and return pretty name as key."""
+
+    full_name = {"num_sectors": "Total sectors",
+                 "num_flights": "Total flights",
+                 "domestic": "Domestic flights",
+                 "asby": "Airport standby's",
+                 "day_at_work": "Days at work",
+                 "flying": "Days flying",
+                 "positioning": "Positioning duties",
+                 "ground_duties": "Ground duties",
+                 "SICK": "Sick days",
+                 "ULV": "Unpaid leave",
+                 "OFC": "Office duties"}
+    return {full_name[k]: v for k, v in count.items() if k in full_name.keys()}
+
 
 
 # FUNCTIONS BELOW NOT USED

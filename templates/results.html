@@ -1,10 +1,50 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Processed
+    Results
 {% endblock %}
 
 {% block main %}
-<!--    <img alt="{{ top }}" class="border" src="http://memegen.link/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?alt=https://i.imgur.com/CsCgN7Ll.png" title="{{ top }}">-->
-<p>Code {{ top }} - {{ bottom }}</p>
+<table class="table table-striped">
+    {% for i, day in days %}
+    <thead>
+    <tr>
+        <th scope="col" colspan="7">Day {{ i + 1 }}</th>
+    </tr>
+    </thead>
+    {% for duty in day.duties %}
+    {% if duty.duty_type == 1 %}
+    <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{ duty.flight_no if duty.flight_no }}</td>
+        <td>{{ duty.dep.name }} ({{ duty.dep.iata }})</td>
+        <td>{{ duty.arr.name }} ({{ duty.arr.iata }})</td>
+        <td>{{ duty.length ~ " nm" if duty.nominal != 0 }}</td>
+        <td>{{ duty.sector if duty.nominal != 0 }}</td>
+        <td>{{ duty.nominal / 10 if duty.nominal != 0 }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{ duty.duty_code }}</td>
+        <td>{{ duty.start_time if duty.start_time }}</td>
+        <td>{{ duty.end_time if duty.end_time }}</td>
+        <td></td>
+        <td></td>
+        <td>{{ duty.paid if duty.paid }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    <tr>
+        <td colspan="7"></td>
+    </tr>
+    {% for item, count in count.items() %}
+    <tr>
+        <td></td>
+        <td colspan="5">{{ item }}</td>
+        <td>{{ count }}</td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}
