@@ -10,7 +10,6 @@ from datastructures import DutyDay, Flight, OtherDuty, get_rostercodes
 from datastructures import time_diff, summary_description
 
 GND_POS = ["OWN", "TAXI", "TRN", "NSO"]
-DAYS = []
 
 
 class ParseRoster:
