@@ -5,17 +5,26 @@
 {% endblock %}
 
 {% block main %}
-<table class="table table-striped">
-    {% for i, day in days %}
-    <thead>
+<table class="table table-striped table-sm">
+    {% for item, count in count.items() %}
     <tr>
-        <th scope="col" colspan="7">Day {{ i + 1 }}</th>
+        <td></td>
+        <td colspan="5">{{ item }}</td>
+        <td>{{ count }}</td>
     </tr>
-    </thead>
+    {% endfor %}
+    <tr>
+        <td colspan="7"></td>
+    </tr>
+    {% for i, day in days %}
+
+    <tr>
+        <th scope="col" colspan="7" class="bg-light">Day {{ i + 1 }}</th>
+    </tr>
     {% for duty in day.duties %}
     {% if duty.duty_type == 1 %}
     <tr>
-        <th scope="row">{{ loop.index }}</th>
+        <th class="text-muted">{{ loop.index }}</th>
         <td>{{ duty.flight_no if duty.flight_no }}</td>
         <td>{{ duty.dep.name }} ({{ duty.dep.iata }})</td>
         <td>{{ duty.arr.name }} ({{ duty.arr.iata }})</td>
@@ -25,7 +34,7 @@
     </tr>
     {% else %}
     <tr>
-        <th scope="row">{{ loop.index }}</th>
+        <th class="text-muted">{{ loop.index }}</th>
         <td>{{ duty.duty_code }}</td>
         <td>{{ duty.start_time if duty.start_time }}</td>
         <td>{{ duty.end_time if duty.end_time }}</td>
@@ -35,16 +44,6 @@
     </tr>
     {% endif %}
     {% endfor %}
-    {% endfor %}
-    <tr>
-        <td colspan="7"></td>
-    </tr>
-    {% for item, count in count.items() %}
-    <tr>
-        <td></td>
-        <td colspan="5">{{ item }}</td>
-        <td>{{ count }}</td>
-    </tr>
     {% endfor %}
 </table>
 {% endblock %}
