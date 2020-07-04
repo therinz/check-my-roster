@@ -2,6 +2,7 @@
 #  Copyright (c) 2020. Rinze Douma
 
 import re
+from collections import defaultdict
 
 from datetime import timedelta
 from bs4 import BeautifulSoup
@@ -164,7 +165,7 @@ class ParseRoster:
         self.lv.clear()
         self.lv.update(save_vals)
 
-    def parse_day(self, day):
+    def parse_day(self, day): # NOQA
         """For one day, loop through all rows and extract duties and times."""
 
         skip_row = end_of_duty = 0
@@ -269,30 +270,24 @@ def night_stops(soup):
         return re.findall(r"[A-Z][a-z]{2}[0-9]{2}", str(s.parent))
 
 
-def only_count(days):
+def only_count(days): # NOQA
     """Take list of days and return count of roster items.
 
     :param days: List of DutyDay objects.
     :return: Dictionary of roster items with their count."""
 
-    master_count = {}
+    master_count = defaultdict(int)
 
     # Sum up duties of full period
     for d in days:
         activities = d.count_items()
         for key, value in activities.items():
             try:
-                if key not in master_count:
-                    master_count[key] = value
-                else:
-                    master_count[key] = master_count[key] + value
+                master_count[key] += value
             except TypeError:
                 # Key/value is bool
-                if key not in master_count:
-                    master_count[key] = 1
-                else:
-                    master_count[key] = master_count[key] + 1
-    master_count["num_sectors"] = master_count["num_sectors"] / 10
+                master_count[key] += 1
+    master_count["num_sectors"] = master_count["num_sectors"] / 10 # NOQA
 
     return summary_description(master_count)
 
@@ -315,6 +310,8 @@ if __name__ == '__main__':
         for duty in day.duties:
             print(duty)
 
-    count = only_count()
+    print("")
+
+    count = only_count(days)
     for k, v in count.items():
-        print(f"Item {k} count {v}.")
+        print(f"{k}: {v}.")
