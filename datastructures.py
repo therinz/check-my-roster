@@ -96,7 +96,6 @@ class DutyDay:
         self.start_time = report_time
         self.end_time = off_duty  # might be after midnight, thus < std
         # TODO standby start will be before report time
-        self.count = self.count_items()
 
     def count_items(self):
         """Count the different items of the duties on 1 day."""
